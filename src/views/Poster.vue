@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import Preloader from "@/components/Preloader.vue"
 import { usePoster } from "@/composables/usePoster";
 import { usePosterBudget } from "@/composables/usePosterBudget";
 import { useRoute } from "vue-router";
 import { POSTER_DATA, POSTER_BOX_OFFICE } from '@/constans';
 import { PostersTypes, BudgetTypes } from '@/types';
 
+const isLoading = ref<boolean>(true);
 let id = ref<string | string[]>('');
 let posterData = ref<PostersTypes[]>([]);
-let posterBudget = ref<BudgetTypes>();
+let posterBudget = ref<BudgetTypes[]>([]);
 
 onMounted(() => {
   id.value = useRoute().params.id;
@@ -17,23 +19,27 @@ onMounted(() => {
 });
 
 const getPoster = async (id: string | string[]) => {
-  // const { poster } = await usePoster(id);
+  const { poster, loaded } = await usePoster(id);
+  isLoading.value = !loaded.value;
   // posterData.value = poster.value;
   posterData.value = POSTER_DATA;
 }
 const getBudget = async (id: string | string[]) => {
-  const { budgets } = await usePosterBudget(id);
-  const budget: BudgetTypes | undefined = Object
-    .values(budgets.value)
-    // .filter((item: any) => item.type === 'WORLD');
-  console.log(budget);
-  // posterBudget.value = budget[0]
+  const { budgets, loaded } = await usePosterBudget(id);
+  isLoading.value = !loaded.value;
+  // const budget: BudgetTypes[] = Object
+  // const budget: any = Object
+  //   .values(budgets.value)
+  //   .find((item: any) => item.type === 'WORLD')
+  // posterBudget.value = budget
+  posterBudget.value = POSTER_BOX_OFFICE
 }
 
 </script>
 
 <template>
-  <div class="poster">
+  <Preloader v-if="isLoading" :isLoad="isLoading"/>
+  <div v-else class="poster">
     <div class="container container--small">
       <div class="poster__wrapper">
         <div class="poster__details">
@@ -79,7 +85,7 @@ const getBudget = async (id: string | string[]) => {
           <div class="poster__detail">
             <span>Сборы в мире:</span>
             <span >
-<!--              {{ posterBudget.amount }}-->
+              {{ posterBudget.symbol + posterBudget.amount }}
             </span>
           </div>
           <div class="poster__detail">
