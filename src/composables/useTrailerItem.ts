@@ -1,14 +1,14 @@
 import { ref } from "vue";
 import { useFilms } from "@/composables/useFilms";
 
-export const usePosterItems = async () => {
+export const useTrailerItem = async (id: string | string[]) => {
   const loaded = ref<boolean>(false);
-  const { response: posterItems, request } = useFilms('films/top','');
+  const { response: videosLinks, request } = useFilms(`films/${id}/videos`,'');
 
   if(!loaded.value) {
     await request();
     loaded.value = true;
   }
 
-  return { posterItems, loaded }
+  return { videosLinks, loaded }
 }

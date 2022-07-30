@@ -7,10 +7,27 @@ interface Props {
 
 const props = defineProps<Props>();
 const { data } = props;
-const { kinopoiskId, ratingKinopoisk, nameRu, nameOriginal, year, posterUrl } = data;
+const {
+  kinopoiskId,
+  ratingKinopoisk,
+  nameRu,
+  nameOriginal,
+  year,
+  posterUrl,
+  filmId,
+  rating
+} = data;
 
 const colorRatingClasses = () => {
-  if(ratingKinopoisk <= 5) {
+  if(rating) {
+    if(rating <= 5 ) {
+      return 'poster-item__rating--red'
+    } else if (rating >= 7) {
+      return 'poster-item__rating--green'
+    }
+  }
+
+  if(ratingKinopoisk <= 5 ) {
     return 'poster-item__rating--red'
   } else if (ratingKinopoisk >= 7) {
     return 'poster-item__rating--green'
@@ -21,14 +38,14 @@ const colorRatingClasses = () => {
 
 <template>
   <router-link
-    :to="`/poster/${kinopoiskId}`"
+    :to="`/poster/${kinopoiskId ? kinopoiskId : filmId}`"
     class="poster-item">
     <div class="poster-item__preview">
       <div
         class="poster-item__rating"
         :class="colorRatingClasses()"
       >
-        {{ ratingKinopoisk }}
+        {{ ratingKinopoisk ? ratingKinopoisk : rating ? rating : '-' }}
       </div>
       <div class="poster-item__poster">
         <img :src="posterUrl" alt="">

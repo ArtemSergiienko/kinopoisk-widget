@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted } from "vue"
 import Preloader from "./Preloader.vue"
 import PosterItem from "./PosterItem.vue"
 import { PostersTypes } from '@/types';
@@ -11,9 +11,9 @@ let postersData = ref<PostersTypes[]>([]);
 
 const posters = async () => {
   const { posterItems, loaded } = await usePosterItems();
-  // postersData.value = posterItems.value;
+  postersData.value = posterItems.value;
   isLoading.value = !loaded.value;
-  postersData.value = POSTERS_DATA
+  // postersData.value = POSTERS_DATA
 }
 
 onMounted(() => {

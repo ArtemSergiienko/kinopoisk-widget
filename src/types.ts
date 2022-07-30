@@ -14,6 +14,8 @@ export type PostersTypes = {
   countries: PostersCountries[]
   slogan?: string
   description?: string
+  rating?: number
+  filmId?: number
 };
 
 export type PostersGenres = {
@@ -30,6 +32,17 @@ export type BudgetTypes = {
   currencyCode: string
   name: string
   symbol: string
+}
+
+export type VideosTypes = {
+  url: string
+  name: string
+  site: string
+}
+
+export type ImagesTypes = {
+  imageUrl: string
+  previewUrl: string
 }
 
 
