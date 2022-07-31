@@ -39,7 +39,7 @@ watch(imgs,
     :onInit="onInit"
   >
     <ImagesItem
-      v-for="imageUrls of galleryImgs"
+      v-for="imageUrls in galleryImgs"
       :class="className"
       :itemImage="imageUrls"
     />

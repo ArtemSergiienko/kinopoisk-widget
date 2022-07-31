@@ -38,7 +38,7 @@ const colorRatingClasses = () => {
 
 <template>
   <router-link
-    :to="`/poster/${kinopoiskId ? kinopoiskId : filmId}`"
+    :to="`/kinopoisk-widget/poster/${kinopoiskId ? kinopoiskId : filmId}`"
     class="poster-item">
     <div class="poster-item__preview">
       <div

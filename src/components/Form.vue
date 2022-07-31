@@ -5,7 +5,7 @@ import {useSearch} from '@/composables/useSearch';
 
 const inputValue = ref<String>('');
 const isShow = ref<boolean>(false);
-const items = ref();
+const items = ref<any[]>([]);
 
 const onSearch = (value: string) => {
   if (value.length > 3) {
@@ -19,7 +19,6 @@ const getSearch = async (keyword: string) => {
   const {searchItems, loaded} = await useSearch(keyword);
   isShow.value = loaded.value
   items.value = searchItems.value;
-  // console.log(searchItems.value);
 }
 
 </script>

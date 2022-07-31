@@ -12,8 +12,7 @@ import { useStaff } from "@/composables/useStaff";
 import { POSTER_DATA, POSTER_BOX_OFFICE, POSTER_VIDEOS, POSTER_BOX_STAFF } from '@/constans';
 import { PostersTypes, BudgetTypes, VideosTypes, ImagesTypes, StaffTypes } from '@/types';
 
-
-const isLoading = ref<boolean>(false);
+const isLoading = ref<boolean>(true);
 let id = ref<string | string[]>('');
 let posterData = ref<PostersTypes>();
 let posterBudget = ref<BudgetTypes[]>([]);
@@ -25,10 +24,10 @@ let arrayImg = ref();
 onMounted(() => {
   id.value = useRoute().params.id;
   getPoster(id.value);
-  // getBudget(id.value);
+  getBudget(id.value);
   // getVideos(id.value);
-  // getImages(id.value);
-  // getStaff(id.value);
+  getImages(id.value);
+  getStaff(id.value);
 });
 
 const getPoster = async (id: string | string[]) => {
@@ -57,11 +56,13 @@ const getVideos = async (id: string | string[]) => {
 
 const getImages = async (id: string | string[]) => {
   const { images, loaded } = await useImagesItem(id);
+  isLoading.value = !loaded.value;
   imagesList.value = images.value
 }
 
 const getStaff = async (id: string | string[]) => {
   const { staff, loaded } = await useStaff(id);
+  isLoading.value = !loaded.value;
   staffList.value = staff.value.filter((item: any) => item.professionKey === 'ACTOR').slice(0, 5);
   // staffList.value = POSTER_BOX_STAFF.filter((item: any) => item.professionKey === 'ACTOR').slice(0, 5);
 }
@@ -93,7 +94,7 @@ const getStaff = async (id: string | string[]) => {
           <div class="poster__detail">
             <span>Страны:</span>
             <span>
-              <span v-for="item of posterData?.countries">
+              <span v-for="item in posterData?.countries">
                 {{ item.country }}
               </span>
             </span>
@@ -105,7 +106,7 @@ const getStaff = async (id: string | string[]) => {
           <div class="poster__detail">
             <span>Актеры:</span>
             <span>
-              <span v-for="actor of staffList">
+              <span v-for="actor in staffList">
                 {{ actor.nameRu }}
               </span>
             </span>
@@ -113,14 +114,14 @@ const getStaff = async (id: string | string[]) => {
           <div class="poster__detail">
             <span>Жанры:</span>
             <span>
-              <span v-for="item of posterData?.genres">
+              <span v-for="item in posterData?.genres">
                 {{ item.genre }}
               </span>
             </span>
           </div>
           <div class="poster__detail">
             <span>Сборы в мире:</span>
-            <span v-for="budget of posterBudget">
+            <span v-for="budget in posterBudget">
               {{ budget ? budget?.symbol + budget?.amount : '-' }}
             </span>
           </div>
@@ -161,7 +162,7 @@ const getStaff = async (id: string | string[]) => {
     display: flex
 
   &__details
-    //width: 100%
+    width: 100%
 
   &__title
     margin-bottom: 8px

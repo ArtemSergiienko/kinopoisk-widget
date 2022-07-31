@@ -6,7 +6,6 @@ import { POSTER_DATA } from '@/constans';
 interface Props {
   searchItems: PostersTypes[]
 }
-
 defineProps<Props>();
 
 </script>
@@ -14,10 +13,18 @@ defineProps<Props>();
 <template>
 <div class="search-list">
   <div class="search-list__wrap">
+    <div></div>
     <SearchItem
-      v-for="item of searchItems"
+      v-for="(item, index) in searchItems"
+      v-if="searchItems.length > 0"
+      :key="item.filmId"
       :searchItem="item"
     />
+    <div
+      v-else
+      class="search-list__nothing">
+      Ничего не найдено
+    </div>
   </div>
 </div>
 </template>
@@ -34,5 +41,9 @@ defineProps<Props>();
   &__wrap
     padding: 15px
 
+  &__nothing
+    padding: 50px 0
+    font-size: 18px
+    text-align: center
 
 </style>

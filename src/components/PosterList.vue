@@ -26,7 +26,7 @@ onMounted(() => {
   <Preloader v-if="isLoading" :isLoad="isLoading"/>
   <div v-else class="poster-list">
     <PosterItem
-      v-for="poster of postersData"
+      v-for="poster in postersData"
       :data="poster"
     />
   </div>

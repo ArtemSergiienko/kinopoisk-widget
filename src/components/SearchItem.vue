@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import {ref} from "vue";
-import {PostersTypes} from '@/types';
+import {ref, watch} from "vue";
+import { PostersTypes } from '@/types';
 
 interface Props {
   searchItem: PostersTypes
 }
 
 const props = defineProps<Props>();
-const {searchItem} = props;
+const { searchItem } = props;
+
 const {
   kinopoiskId,
   filmId,
@@ -40,7 +41,7 @@ const colorRatingClasses = () => {
 
 <template>
   <router-link
-    :to="`poster/${filmId}`"
+    :to="`/kinopoisk-widget/poster/${filmId}`"
     class="search-item">
     <div class="search-item__img">
       <img :src="posterUrlPreview" alt="">
@@ -57,7 +58,7 @@ const colorRatingClasses = () => {
       </div>
       <div class="search-item__genres">
         Жанр:
-        <span v-for="genre of genres">
+        <span v-for="genre in genres">
         {{ genre.genre }}
       </span>
       </div>
