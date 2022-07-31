@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import Gallery from "@/components/Gallery.vue"
 import Preloader from "@/components/Preloader.vue"
 import BtnBack from "@/components/BtnBack.vue"
@@ -7,43 +8,45 @@ import { usePoster } from "@/composables/usePoster";
 import { usePosterBudget } from "@/composables/usePosterBudget";
 import { useTrailerItem } from "@/composables/useTrailerItem";
 import { useImagesItem } from "@/composables/useImagesItem";
-import { useRoute } from "vue-router";
-import { POSTER_DATA, POSTER_BOX_OFFICE, POSTER_VIDEOS } from '@/constans';
-import { PostersTypes, BudgetTypes, VideosTypes, ImagesTypes } from '@/types';
+import { useStaff } from "@/composables/useStaff";
+import { POSTER_DATA, POSTER_BOX_OFFICE, POSTER_VIDEOS, POSTER_BOX_STAFF } from '@/constans';
+import { PostersTypes, BudgetTypes, VideosTypes, ImagesTypes, StaffTypes } from '@/types';
 
 
-const isLoading = ref<boolean>(true);
+const isLoading = ref<boolean>(false);
 let id = ref<string | string[]>('');
 let posterData = ref<PostersTypes[]>([]);
 let posterBudget = ref<BudgetTypes[]>([]);
 let posterVideos = ref<VideosTypes[]>([]);
 let imagesList = ref<ImagesTypes[]>([]);
+let staffList = ref<StaffTypes[]>([]);
 let arrayImg = ref();
 
 onMounted(() => {
   id.value = useRoute().params.id;
   getPoster(id.value);
   getBudget(id.value);
-  getVideos(id.value);
+  // getVideos(id.value);
   getImages(id.value);
+  getStaff(id.value);
 });
 
 const getPoster = async (id: string | string[]) => {
-  const { poster, loaded } = await usePoster(id);
-  isLoading.value = !loaded.value;
-  posterData.value = [poster.value];
-  // posterData.value = [POSTER_DATA];
+  // const { poster, loaded } = await usePoster(id);
+  // isLoading.value = !loaded.value;
+  // posterData.value = [poster.value];
+  posterData.value = [POSTER_DATA];
 }
 
 const getBudget = async (id: string | string[]) => {
-  const { budgets, loaded } = await usePosterBudget(id);
-  isLoading.value = !loaded.value;
-  // const budget: BudgetTypes[] = Object
-  const budget: any = Object
-    .values(budgets.value)
-    .find((item: any) => item.type === 'WORLD')
-  posterBudget.value = [budget]
-  // posterBudget.value = POSTER_BOX_OFFICE
+  // const { budgets, loaded } = await usePosterBudget(id);
+  // isLoading.value = !loaded.value;
+  // // const budget: BudgetTypes[] = Object
+  // const budget: any = Object
+  //   .values(budgets.value)
+  //   .find((item: any) => item.type === 'WORLD')
+  // posterBudget.value = [budget]
+  posterBudget.value = POSTER_BOX_OFFICE
 }
 
 const getVideos = async (id: string | string[]) => {
@@ -53,8 +56,15 @@ const getVideos = async (id: string | string[]) => {
 }
 
 const getImages = async (id: string | string[]) => {
-  const { images, loaded } = await useImagesItem(id);
-  imagesList.value = images.value
+  // const { images, loaded } = await useImagesItem(id);
+  // imagesList.value = images.value
+}
+
+const getStaff = async (id: string | string[]) => {
+  const { staff, loaded } = await useStaff(id);
+  // staffList.value =
+  // staffList.value = staff.value.filter((item: any) => item.professionKey === 'ACTOR').slice(0, 5);
+  staffList.value = POSTER_BOX_STAFF.filter((item: any) => item.professionKey === 'ACTOR').slice(0, 5);
 }
 
 </script>
@@ -95,7 +105,11 @@ const getImages = async (id: string | string[]) => {
           </div>
           <div class="poster__detail">
             <span>Актеры:</span>
-            <span>-</span>
+            <span>
+              <span v-for="actor of staffList">
+                {{ actor.nameRu }}
+              </span>
+            </span>
           </div>
           <div class="poster__detail">
             <span>Жанры:</span>
@@ -183,6 +197,9 @@ const getImages = async (id: string | string[]) => {
         color: #fff
 
     span
+      display: flex
+      justify-content: flex-end
+      flex-wrap: wrap
       font-size: 18px
       font-weight: 500
       transition: color 0.3s
@@ -194,13 +211,19 @@ const getImages = async (id: string | string[]) => {
         text-align: right
 
       span
-        padding-right: 5px
+        padding-right: 10px
+
+        &:after
+          content: ', '
 
         &:first-child
-          padding-right: 5px
+          padding-right: 10px
 
         &:last-child
           padding-right: 0
+
+          &:after
+            content: ''
 
   &__detail--btn
     align-items: center

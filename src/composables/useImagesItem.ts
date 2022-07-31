@@ -1,9 +1,9 @@
 import { ref } from "vue";
-import { useFilms } from "@/composables/useFilms";
+import { useRequest } from "@/composables/useRequest";
 
 export const useImagesItem = async (id: string | string[]) => {
   const loaded = ref<boolean>(false);
-  const { response: images, request } = useFilms(`films/${id}/images`,'');
+  const { response: images, request } = useRequest(`v2.2/films/${id}/images`,'');
 
   if(!loaded.value) {
     await request();

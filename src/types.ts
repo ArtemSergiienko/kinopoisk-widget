@@ -45,5 +45,11 @@ export type ImagesTypes = {
   previewUrl: string
 }
 
+export type StaffTypes = {
+  nameEn: string
+  nameRu: string
+  professionKey: string
+}
+
 
 

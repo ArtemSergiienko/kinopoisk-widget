@@ -1,7 +1,7 @@
 import { ref, reactive } from "vue";
 import axios from "axios";
 
-export const useRequiest = (url: string, params: {}) => {
+export const useRequest = (url: string, params: {}) => {
   let response = ref();
 
   const request = async () => {

@@ -65,7 +65,8 @@ export const POSTER_DATA = {
     type:"FILM",
     ratingMpaa:"r",
     ratingAgeLimits:"age16",
-    countries:[{"country":"США"}],"genres":[{"genre":"драма"}],
+    countries:[{"country":"США"}],
+    genres:[{"genre":"драма"}, {"genre":"драма"}, {"genre":"драма"}, {"genre":"asdasdasdasdasd"}],
     startYear:null,
     endYear:null,
     serial:false,
@@ -147,5 +148,35 @@ export const POSTER_VIDEOS = [
     "url":"https://widgets.kinopoisk.ru/discovery/trailer/40763?onlyPlayer=1&autoplay=1&cover=1",
     "name":"Тизер",
     "site":"KINOPOISK_WIDGET"
+  }
+]
+
+export const POSTER_BOX_STAFF = [
+  {
+    description: null,
+    nameEn: "Christopher Nolan",
+    nameRu: "Кристофер Нолан",
+    posterUrl: "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/41477.jpg",
+    professionKey: "DIRECTOR",
+    professionText: "Режиссеры",
+    staffId: 41477
+  },
+  {
+    description: "Cobb",
+    nameEn: "Leonardo DiCaprio",
+    nameRu: "Леонардо ДиКаприо",
+    posterUrl: "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/37859.jpg",
+    professionKey: "ACTOR",
+    professionText: "Актеры",
+    staffId: 37859
+  },
+  {
+    description: "Arthur",
+    nameEn: "Joseph Gordon-Levitt",
+    nameRu: "Джозеф Гордон-Левитт",
+    posterUrl: "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/9867.jpg",
+    professionKey: "ACTOR",
+    professionText: "Актеры",
+    staffId: 9867
   }
 ]
