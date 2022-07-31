@@ -1,11 +1,15 @@
 <script setup lang="ts">
 
+const getBack = (then: any) => {
+  then.$router.go(-1)
+}
 </script>
 
 <template>
   <router-link
-    to="/"
+    to=""
     class="btn-back"
+    @click="getBack(this)"
   >
     <img src="@/assets/images/free_icon_1.svg" alt="">
     Назад

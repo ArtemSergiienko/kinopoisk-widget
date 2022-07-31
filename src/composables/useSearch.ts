@@ -1,10 +1,10 @@
 import { ref } from "vue";
 import { useRequest } from "@/composables/useRequest";
 
-export const usePosterItems = async () => {
+export const useSearch = async (keyword: string) => {
   const loaded = ref<boolean>(false);
-  const { response: posterItems, request } = useRequest('v2.2/films/top', {
-    type: 'TOP_100_POPULAR_FILMS',
+  const { response: searchItems, request } = useRequest('v2.1/films/search-by-keyword', {
+    keyword: keyword,
     page: 1
   });
 
@@ -13,5 +13,5 @@ export const usePosterItems = async () => {
     loaded.value = true;
   }
 
-  return { posterItems, loaded }
+  return { searchItems, loaded }
 }

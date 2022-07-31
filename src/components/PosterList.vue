@@ -35,7 +35,7 @@ onMounted(() => {
 <style scoped lang="sass">
 .poster-list
   display: grid
-  grid-template-columns: repeat(6, 1fr)
+  grid-template-columns: repeat(5, 1fr)
   gap: 30px
 
 </style>

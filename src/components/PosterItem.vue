@@ -13,7 +13,7 @@ const {
   nameRu,
   nameOriginal,
   year,
-  posterUrl,
+  posterUrlPreview,
   filmId,
   rating
 } = data;
@@ -48,7 +48,7 @@ const colorRatingClasses = () => {
         {{ ratingKinopoisk ? ratingKinopoisk : rating ? rating : '-' }}
       </div>
       <div class="poster-item__poster">
-        <img :src="posterUrl" alt="">
+        <img :src="posterUrlPreview" alt="">
       </div>
     </div>
     <div class="poster-item__name">{{ nameRu || nameOriginal }}</div>
