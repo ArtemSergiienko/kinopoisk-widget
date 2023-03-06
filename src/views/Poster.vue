@@ -25,7 +25,7 @@ onMounted(() => {
   id.value = useRoute().params.id;
   getPoster(id.value);
   getBudget(id.value);
-  // getVideos(id.value);
+  getVideos(id.value);
   getImages(id.value);
   getStaff(id.value);
 });
@@ -49,15 +49,16 @@ const getBudget = async (id: string | string[]) => {
 }
 
 const getVideos = async (id: string | string[]) => {
-  // const { videosLinks, loaded } = await useTrailerItem(id);
-  // console.log(videosLinks);
+  const { videosLinks, loaded } = await useTrailerItem(id);
+  posterVideos.value = videosLinks.value;
+  isLoading.value = !loaded.value;
   // posterVideos.value = POSTER_VIDEOS
 }
 
 const getImages = async (id: string | string[]) => {
   const { images, loaded } = await useImagesItem(id);
   isLoading.value = !loaded.value;
-  imagesList.value = images.value
+  imagesList.value = images.value;
 }
 
 const getStaff = async (id: string | string[]) => {
@@ -133,12 +134,19 @@ const getStaff = async (id: string | string[]) => {
         <div class="poster__preview">
           <div class="poster__img" :style="`background-image: url(${posterData?.posterUrlPreview})`">
           </div>
-          <div class="poster__detail poster__detail--btn">
-            <span>Смотреть трейлер</span>
-            <span>
-              <img src="@/assets/images/yt.svg" alt="">
-            </span>
-          </div>
+<!--          <div class="poster__detail poster__detail&#45;&#45;btn">-->
+<!--            <span>Смотреть трейлер</span>-->
+<!--            <span>-->
+<!--              <img src="@/assets/images/yt.svg" alt="">-->
+<!--            </span>-->
+<!--          </div>-->
+
+          <Gallery
+              :galleryImgs="[]"
+              :galleryVideos="posterVideos"
+              class="poster__images"
+              :className="'poster__detail poster__detail--btn'"
+          />
         </div>
       </div>
       <div class="poster__desc">
@@ -148,6 +156,7 @@ const getStaff = async (id: string | string[]) => {
     <div class="container container--small">
       <Gallery
         :galleryImgs="imagesList"
+        :galleryVideos="[]"
         class="poster__images"
         :className="'poster-image'"
       />

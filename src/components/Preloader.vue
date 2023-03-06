@@ -20,6 +20,7 @@ const not = (val: boolean) => val
 <style scoped lang="sass">
 
 .preloader
+  height: 100px
 
   &__run
     position: relative

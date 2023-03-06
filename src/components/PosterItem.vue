@@ -7,6 +7,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const { data } = props;
+
 const {
   kinopoiskId,
   ratingKinopoisk,
