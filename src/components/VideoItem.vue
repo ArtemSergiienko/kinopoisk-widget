@@ -12,6 +12,7 @@ const { url, name } = props.itemVideo;
 
 <template>
   <a class="image-item"
+     :href="url"
      data-lg-size="1280-720"
      :data-src="url"
      :title="name">

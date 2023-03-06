@@ -21,6 +21,12 @@ const getSearch = async (keyword: string) => {
   items.value = searchItems.value;
 }
 
+const onBlur = () => {
+  setTimeout(() => {
+    isShow.value = false
+  }, 150)
+}
+
 </script>
 
 <template>
@@ -29,6 +35,7 @@ const getSearch = async (keyword: string) => {
       <div class="form__place">
         <input
           @input="onSearch(inputValue)"
+          @blur="onBlur"
           v-model="inputValue"
           class="form__input"
           name="search"

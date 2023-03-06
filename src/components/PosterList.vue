@@ -30,13 +30,15 @@ const handleScroll = () => {
   }
 }
 
+const initThrottle = throttle(handleScroll, 150);
+
 onMounted(() => {
   posters();
-  window.addEventListener("scroll", throttle(handleScroll, 150));
+  window.addEventListener("scroll", initThrottle);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll)
+  window.removeEventListener("scroll", initThrottle)
 });
 
 </script>

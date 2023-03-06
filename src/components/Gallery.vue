@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref, watch, nextTick, onUpdated } from "vue";
-import ImagesItem from "@/components/ImagesItem.vue"
-import VideosItem from "@/components/VideosItem.vue"
+import ImageItem from "@/components/ImageItem.vue"
+import VideoItem from "@/components/VideoItem.vue"
 import Lightgallery from 'lightgallery/vue';
+import lgVideo from 'lightgallery/plugins/video';
 import { ImagesTypes } from '@/types';
 import { VideosTypes } from '@/types';
 import 'lightgallery/plugins/zoom';
 import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-video.css';
 
 interface Props {
   galleryImgs: ImagesTypes[];
@@ -40,15 +42,16 @@ watch(imgs,
 
 <template>
   <lightgallery
+    :settings="{ plugins: [lgVideo] }"
     :onInit="onInit"
   >
-    <ImagesItem
+    <ImageItem
       v-if="galleryImgs.length"
       v-for="imageUrls in galleryImgs"
       :class="className"
       :itemImage="imageUrls"
     />
-    <VideosItem
+    <VideoItem
         v-else
         v-for="videoUrl in galleryVideos"
         :itemVideo="videoUrl"
