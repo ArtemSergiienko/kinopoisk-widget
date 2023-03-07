@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SearchItem from '@/components/SearchItem.vue';
 import { PostersTypes } from '@/types';
-import { POSTER_DATA } from '@/constans';
+import POSTER_DATA from '@/fixtures/poster.json';
 
 interface Props {
   searchItems: PostersTypes[]

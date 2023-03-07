@@ -1,0 +1,30 @@
+[
+  {
+    "type":"BUDGET",
+    "amount":25000000,
+    "currencyCode":"USD",
+    "name":"US Dollar",
+    "symbol":"$"
+  },
+  {
+    "type":"RUS",
+    "amount":87432,
+    "currencyCode":"USD",
+    "name":"US Dollar",
+    "symbol":"$"
+  },
+  {
+    "type":"USA",
+    "amount":28341469,
+    "currencyCode":"USD",
+    "name":"US Dollar",
+    "symbol":"$"
+  },
+  {
+    "type":"WORLD",
+    "amount":28418687,
+    "currencyCode":"USD",
+    "name":"US Dollar",
+    "symbol":"$"
+  }
+]

@@ -13,6 +13,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/Poster.vue"),
   },
+  {
+    path: "/kinopoisk-widget/actor/:id",
+    name: "Actor",
+    component: () =>
+        import(/* webpackChunkName: "about" */ "@/views/Actor.vue"),
+  },
 ];
 
 const router = createRouter({

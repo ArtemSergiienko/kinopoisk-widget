@@ -1,0 +1,29 @@
+[
+  {
+    "description": null,
+    "nameEn": "Christopher Nolan",
+    "nameRu": "Кристофер Нолан",
+    "posterUrl": "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/41477.jpg",
+    "professionKey": "DIRECTOR",
+    "professionText": "Режиссеры",
+    "staffId": 41477
+  },
+  {
+    "description": "Cobb",
+    "nameEn": "Leonardo DiCaprio",
+    "nameRu": "Леонардо ДиКаприо",
+    "posterUrl": "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/37859.jpg",
+    "professionKey": "ACTOR",
+    "professionText": "Актеры",
+    "staffId": 37859
+  },
+  {
+    "description": "Arthur",
+    "nameEn": "Joseph Gordon-Levitt",
+    "nameRu": "Джозеф Гордон-Левитт",
+    "posterUrl": "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/9867.jpg",
+    "professionKey": "ACTOR",
+    "professionText": "Актеры",
+    "staffId": 9867
+  }
+]

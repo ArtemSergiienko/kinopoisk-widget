@@ -9,7 +9,10 @@ import { usePosterBudget } from "@/composables/usePosterBudget";
 import { useTrailerItem } from "@/composables/useTrailerItem";
 import { useImagesItem } from "@/composables/useImagesItem";
 import { useStaff } from "@/composables/useStaff";
-import { POSTER_DATA, POSTER_BOX_OFFICE, POSTER_VIDEOS, POSTER_BOX_STAFF } from '@/constans';
+import POSTER_BOX_STAFF from '@/fixtures/actor.json';
+import POSTER_VIDEOS from '@/fixtures/videos.json';
+import POSTER_BOX_OFFICE from '@/fixtures/office.json';
+import POSTER_DATA from '@/fixtures/poster.json';
 import { PostersTypes, BudgetTypes, VideosTypes, ImagesTypes, StaffTypes } from '@/types';
 
 const isLoading = ref<boolean>(true);
@@ -40,7 +43,6 @@ const getPoster = async (id: string | string[]) => {
 const getBudget = async (id: string | string[]) => {
   const { budgets, loaded } = await usePosterBudget(id);
   isLoading.value = !loaded.value;
-  // const budget: BudgetTypes[] = Object
   const budget: any = Object
     .values(budgets.value)
     .find((item: any) => item.type === 'WORLD')
@@ -50,7 +52,7 @@ const getBudget = async (id: string | string[]) => {
 
 const getVideos = async (id: string | string[]) => {
   const { videosLinks, loaded } = await useTrailerItem(id);
-  posterVideos.value = videosLinks.value;
+  posterVideos.value = videosLinks.value?.items;
   isLoading.value = !loaded.value;
   // posterVideos.value = POSTER_VIDEOS
 }
@@ -58,7 +60,7 @@ const getVideos = async (id: string | string[]) => {
 const getImages = async (id: string | string[]) => {
   const { images, loaded } = await useImagesItem(id);
   isLoading.value = !loaded.value;
-  imagesList.value = images.value;
+  imagesList.value = images.value?.items;
 }
 
 const getStaff = async (id: string | string[]) => {
@@ -107,9 +109,13 @@ const getStaff = async (id: string | string[]) => {
           <div class="poster__detail">
             <span>Актеры:</span>
             <span>
-              <span v-for="actor in staffList">
+              <router-link
+                v-for="actor in staffList"
+                :to="`/kinopoisk-widget/actor/${actor.staffId}`"
+                class="poster__link"
+              >
                 {{ actor.nameRu }}
-              </span>
+              </router-link>
             </span>
           </div>
           <div class="poster__detail">
@@ -164,138 +170,6 @@ const getStaff = async (id: string | string[]) => {
   </div>
 </template>
 
-<style scoped lang="sass">
-.poster
-
-  &__wrapper
-    display: flex
-
-  &__details
-    width: 100%
-
-  &__title
-    margin-bottom: 8px
-    font-size: 22px
-    font-weight: 700
-
-  &__rating
-    margin-bottom: 18px
-
-    span
-      margin-right: 16px
-      font-size: 18px
-      font-weight: 500
-
-  &__detail
-    position: relative
-    display: flex
-    justify-content: space-between
-    margin-bottom: 15px
-    padding: 17px 24px
-    background-color: #eef5ff
-    border-radius: 6px
-    transition: background-color 0.3s
-
-    &:last-child
-      margin-bottom: 0
-
-    &:hover
-      background-color: #336cfb
-
-      span
-        color: #fff
-
-    span
-      display: flex
-      justify-content: flex-end
-      flex-wrap: wrap
-      font-size: 18px
-      font-weight: 500
-      transition: color 0.3s
-
-      &:first-child
-        padding-right: 20px
-
-      &:last-child
-        text-align: right
-
-      span
-        padding-right: 10px
-
-        &:after
-          content: ', '
-
-        &:first-child
-          padding-right: 10px
-
-        &:last-child
-          padding-right: 0
-
-          &:after
-            content: ''
-
-  &__detail--btn
-    align-items: center
-    cursor: pointer
-
-    img
-      display: block
-      width: 30px
-      height: 22px
-
-  &__preview
-    max-width: 370px
-    width: 100%
-    flex-shrink: 0
-    padding-left: 30px
-
-  &__img
-    position: relative
-    width: 100%
-    height: 490px
-    margin-bottom: 10px
-    border-radius: 30px
-    background:
-      position: center
-      repeat: no-repeat
-      size: cover
-
-    &:before
-      content: ""
-      z-index: 0
-      position: absolute
-      display: block
-      width: 100%
-      height: 100%
-      background: inherit
-      border-radius: 15px
-      filter: blur(15px)
-
-    &:after
-      content: ""
-      z-index: 0
-      position: absolute
-      top: 0
-      display: block
-      width: 100%
-      height: 100%
-      background: inherit
-      border-radius: 15px
-
-    img
-      width: 100%
-      height: 100%
-      object-fit: cover
-
-  &__desc
-    margin-top: 18px
-    font-size: 18px
-    font-weight: 500
-
-  &__images
-    display: grid
-    gap: 10px
-    grid-template-columns: repeat(5, minmax(120px, 1fr))
-    padding: 20px 0
+<style lang="sass">
 
 </style>

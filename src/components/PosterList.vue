@@ -4,27 +4,30 @@ import throttle from 'lodash-es/throttle';
 import Preloader from "./Preloader.vue"
 import PosterItem from "./PosterItem.vue"
 import { PostersTypes } from '@/types';
-import { POSTERS_DATA } from '@/constans';
+import POSTERS_DATA from '@/fixtures/posters.json';
 import { usePosterItems } from '@/composables/usePosterItems';
 
 const target = ref();
 const isLoading = ref<boolean>(true);
 let postersData = ref<PostersTypes[]>([]);
-let page = 1;
+let page = ref<number>(1);
+let pagesCount = ref<number>(0);
 
 const posters = async () => {
-  const { posterItems, loaded } = await usePosterItems(page);
-  postersData.value = [...postersData.value, ...posterItems.value];
+  const { posterItems, loaded } = await usePosterItems(page.value);
+  postersData.value = [...postersData.value, ...posterItems.value.films];
   isLoading.value = !loaded.value;
+  pagesCount.value = posterItems.value.pagesCount;
   // isLoading.value = false;
   // postersData.value = POSTERS_DATA
 }
 
 const handleScroll = () => {
   const postList = target.value;
+  if(page.value > pagesCount.value) return
   if(isLoading.value) return
   if(postList.offsetTop + postList.clientHeight < window.outerHeight + window.scrollY) {
-    page++;
+    page.value++;
     isLoading.value = true;
     posters();
   }

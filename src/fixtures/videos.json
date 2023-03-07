@@ -1,0 +1,42 @@
+[
+  {
+    "url":"https://www.youtube.com/watch?v=mccs8Ql8m8o",
+    "name":"Французский трейлер",
+    "site":"YOUTUBE"
+  },
+  {
+    "url":"https://widgets.kinopoisk.ru/discovery/trailer/13420?onlyPlayer=1&autoplay=1&cover=1",
+    "name":"Фрагмент (содержит спойлер!) (дублированный)",
+    "site":"KINOPOISK_WIDGET"
+  },
+  {
+    "url":"https://www.youtube.com/v/NRT11KuW6L0",
+    "name":"Немецкий трейлер",
+    "site":"YOUTUBE"
+  },
+  {
+    "url":"https://widgets.kinopoisk.ru/discovery/trailer/13494?onlyPlayer=1&autoplay=1&cover=1",
+    "name":"Трейлер (русский язык)",
+    "site":"KINOPOISK_WIDGET"
+  },
+  {
+    "url":"https://widgets.kinopoisk.ru/discovery/trailer/13384?onlyPlayer=1&autoplay=1&cover=1",
+    "name":"О съёмках",
+    "site":"KINOPOISK_WIDGET"
+  },
+  {
+    "url":"http://trailers.s3.mds.yandex.net/video_original/2869-62a449552b9cd4cdf3004a0a6ba13feb",
+    "name":"Трейлер",
+    "site":"UNKNOWN"
+  },
+  {
+    "url":"https://www.youtube.com/v/4HR_hk5I49c",
+    "name":"Русский ТВ-ролик",
+    "site":"YOUTUBE"
+  },
+  {
+    "url":"https://widgets.kinopoisk.ru/discovery/trailer/40763?onlyPlayer=1&autoplay=1&cover=1",
+    "name":"Тизер",
+    "site":"KINOPOISK_WIDGET"
+  }
+]

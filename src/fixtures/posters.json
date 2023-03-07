@@ -1,0 +1,31 @@
+[
+  { "countries": [{"country": "США"}, {"country": "Австралия"}, {"country": "Япония"}],
+    "genres": [{"genre": "комедия"}, {"genre": "короткометражка"}],
+    "imdbId": "tt4202274",
+    "kinopoiskId": 1043658,
+    "nameEn": null,
+    "nameOriginal": "The Filthy Frank Show",
+    "nameRu": "Шоу Грязного Фрэнка",
+    "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/1043658.jpg",
+    "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1043658.jpg",
+    "ratingImdb": 9.2,
+    "ratingKinopoisk": 5.4,
+    "type": "TV_SERIES",
+    "year": 2011
+  },
+  {
+    "countries": [{"country": "США"}],
+    "genres": [{"genre": "спорт"}, {"genre": "для взрослых"}],
+    "imdbId": "tt9257638",
+    "kinopoiskId": 1252447,
+    "nameEn": null,
+    "nameOriginal": "Lords of the Lockerroom",
+    "nameRu": "Лорды раздевалки",
+    "posterUrl": "https://kinopoiskapiunofficial.tech/images/posters/kp/1252447.jpg",
+    "posterUrlPreview": "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1252447.jpg",
+    "ratingImdb": 9.3,
+    "ratingKinopoisk": 7,
+    "type": "FILM",
+    "year": 1999
+  }
+]

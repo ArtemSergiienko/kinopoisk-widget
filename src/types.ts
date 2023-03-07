@@ -51,5 +51,31 @@ export type StaffTypes = {
   professionKey: string
 }
 
+export type FilmType = {
+  description: string,
+  filmId: number
+  general: boolean
+  nameEn: string,
+  nameRu: string,
+  professionKey: string,
+  rating: string,
+}
 
-
+export type ActorTypes = {
+  personId: number,
+  webUrl: string,
+  nameRu: string,
+  nameEn: string,
+  sex: string,
+  posterUrl: string,
+  growth: string,
+  birthday: string,
+  death: string,
+  age: number,
+  birthplace: string,
+  deathplace: string,
+  hasAwards: number,
+  profession: string,
+  facts: string[],
+  films: FilmType[]
+}
