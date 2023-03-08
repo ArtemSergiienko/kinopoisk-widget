@@ -3,6 +3,8 @@ import { ref, onMounted } from "vue";
 import {useRoute} from "vue-router";
 import Preloader from "@/components/Preloader.vue"
 import BtnBack from "@/components/BtnBack.vue"
+import Fact from "@/components/Fact.vue"
+import Film from "@/components/Film.vue"
 import { useActor } from "@/composables/useActor";
 import ACTOR_DATA from '@/fixtures/actor.json';
 import {ActorTypes, FilmType} from '@/types';
@@ -10,7 +12,6 @@ import {ActorTypes, FilmType} from '@/types';
 const isLoading = ref<boolean>(true);
 let actor = ref<ActorTypes>();
 let id = ref<string | string[]>(useRoute().params.id);
-let startCount = ref<number>(0);
 let spliceFilms = ref<number>(15);
 let films = ref<FilmType[] | undefined>([]);
 
@@ -96,29 +97,21 @@ const handleLoadFilms = () => {
             <div class="poster__title">
               Факты
             </div>
-            <div v-for="fact in actor.facts">
-              {{ fact }}
-            </div>
+            <Fact
+              v-for="fact in actor.facts"
+              :fact="fact"
+            />
           </div>
           <div class="poster__part" v-if="films.length">
             <div class="poster__title">
               Фильмы
             </div>
             <div class="poster__films">
-              <div
-                  :key="film.filmId"
-                  v-for="film in films.slice(startCount, spliceFilms)"
-                  class="poster__film"
-              >
-                <router-link :to="`/kinopoisk-widget/poster/${film.filmId}`">
-                  {{ film.nameRu }}
-                </router-link>
-
-                <span>
-                  Рейтинг:
-                  {{ film.rating }}
-                </span>
-              </div>
+              <Film
+                :key="film.filmId"
+                v-for="film in films.slice(0, spliceFilms)"
+                :film="film"
+              />
             </div>
           </div>
           <button class="poster__btn" @click="handleLoadFilms">Показать еще</button>

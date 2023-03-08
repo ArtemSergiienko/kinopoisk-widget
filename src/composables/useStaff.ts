@@ -5,7 +5,7 @@ export const useStaff = async (id: string | string[]) => {
   const loaded = ref<boolean>(false);
   const { response: staff, request } = useRequest('v1/staff', {
     filmId: id
-  });
+  }, false);
 
   if(!loaded.value) {
     await request();

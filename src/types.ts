@@ -16,7 +16,7 @@ export type PostersTypes = {
   description?: string
   rating?: number
   filmId?: number
-};
+}
 
 export type PostersGenres = {
   genre: string
@@ -49,33 +49,34 @@ export type StaffTypes = {
   nameEn: string
   nameRu: string
   professionKey: string
+  staffId: number
 }
 
 export type FilmType = {
-  description: string,
+  description: string
   filmId: number
   general: boolean
-  nameEn: string,
-  nameRu: string,
-  professionKey: string,
-  rating: string,
+  nameEn: string
+  nameRu: string
+  professionKey: string
+  rating: string
 }
 
 export type ActorTypes = {
-  personId: number,
-  webUrl: string,
-  nameRu: string,
-  nameEn: string,
+  personId: number
+  webUrl: string
+  nameRu: string
+  nameEn: string
   sex: string,
-  posterUrl: string,
-  growth: string,
-  birthday: string,
-  death: string,
-  age: number,
-  birthplace: string,
-  deathplace: string,
-  hasAwards: number,
-  profession: string,
-  facts: string[],
+  posterUrl: string
+  growth: string
+  birthday: string
+  death: string
+  age: number
+  birthplace: string
+  deathplace: string
+  hasAwards: number
+  profession: string
+  facts: string[]
   films: FilmType[]
 }

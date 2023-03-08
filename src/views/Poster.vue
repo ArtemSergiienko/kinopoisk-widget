@@ -111,7 +111,7 @@ const getStaff = async (id: string | string[]) => {
             <span>
               <router-link
                 v-for="actor in staffList"
-                :to="`/kinopoisk-widget/actor/${actor.staffId}`"
+                :to="`/kinopoisk-widget/actor/${actor?.staffId}`"
                 class="poster__link"
               >
                 {{ actor.nameRu }}
