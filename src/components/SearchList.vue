@@ -7,7 +7,6 @@ interface Props {
   searchItems: PostersTypes[]
 }
 defineProps<Props>();
-
 </script>
 
 <template>

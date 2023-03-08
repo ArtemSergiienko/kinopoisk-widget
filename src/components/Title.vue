@@ -24,6 +24,7 @@ defineProps<Props>();
 </template>
 
 <style scoped lang="sass">
+@import "./../styles/mixins/media"
 .title
   position: relative
 
@@ -50,5 +51,8 @@ defineProps<Props>();
     font-size: 85px
     font-weight: 700
     text-transform: uppercase
+
+    +max-w(768)
+      display: none
 
 </style>

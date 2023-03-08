@@ -58,9 +58,24 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="sass">
+@import "./../styles/mixins/media"
 .poster-list
   display: grid
   grid-template-columns: repeat(5, 1fr)
   gap: 30px
+
+  +max-w(1500)
+    grid-template-columns: repeat(4, 1fr)
+
+  +max-w(1200)
+    grid-template-columns: repeat(3, 1fr)
+    gap: 15px
+
+  +max-w(768)
+    grid-template-columns: repeat(2, 1fr)
+    gap: 15px
+
+  +max-w(480)
+    grid-template-columns: repeat(1, 1fr)
 
 </style>

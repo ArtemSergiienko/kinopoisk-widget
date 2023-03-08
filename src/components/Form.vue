@@ -18,7 +18,7 @@ const onSearch = (value: string) => {
 const getSearch = async (keyword: string) => {
   const {searchItems, loaded} = await useSearch(keyword);
   isShow.value = loaded.value
-  items.value = searchItems.value;
+  items.value = searchItems.value.films;
 }
 
 const onBlur = () => {
