@@ -9,7 +9,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <div class="poster__film">
+  <div class="film">
     <router-link :to="`/kinopoisk-widget/poster/${film.filmId}`">
       {{ film.nameRu }}
     </router-link>

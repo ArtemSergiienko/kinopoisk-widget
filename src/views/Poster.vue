@@ -9,23 +9,21 @@ import { usePosterBudget } from "@/composables/usePosterBudget";
 import { useTrailerItem } from "@/composables/useTrailerItem";
 import { useImagesItem } from "@/composables/useImagesItem";
 import { useStaff } from "@/composables/useStaff";
-import POSTER_BOX_STAFF from '@/fixtures/actor.json';
-import POSTER_VIDEOS from '@/fixtures/videos.json';
-import POSTER_BOX_OFFICE from '@/fixtures/office.json';
-import POSTER_DATA from '@/fixtures/poster.json';
+// import POSTER_BOX_STAFF from '@/fixtures/actor.json';
+// import POSTER_VIDEOS from '@/fixtures/videos.json';
+// import POSTER_BOX_OFFICE from '@/fixtures/office.json';
+// import POSTER_DATA from '@/fixtures/poster.json';
 import { PostersTypes, BudgetTypes, VideosTypes, ImagesTypes, StaffTypes } from '@/types';
 
 const isLoading = ref<boolean>(true);
-let id = ref<string | string[]>('');
+let id = ref<string | string[]>(useRoute().params.id);
 let posterData = ref<PostersTypes>();
 let posterBudget = ref<BudgetTypes[]>([]);
 let posterVideos = ref<VideosTypes[]>([]);
 let imagesList = ref<ImagesTypes[]>([]);
 let staffList = ref<StaffTypes[]>([]);
-let arrayImg = ref();
 
 onMounted(() => {
-  id.value = useRoute().params.id;
   getPoster(id.value);
   getBudget(id.value);
   getVideos(id.value);

@@ -6,7 +6,7 @@ import BtnBack from "@/components/BtnBack.vue"
 import Fact from "@/components/Fact.vue"
 import Film from "@/components/Film.vue"
 import { useActor } from "@/composables/useActor";
-import ACTOR_DATA from '@/fixtures/actor.json';
+// import ACTOR_DATA from '@/fixtures/actor.json';
 import {ActorTypes, FilmType} from '@/types';
 
 const isLoading = ref<boolean>(true);

@@ -1,14 +1,15 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <router-link
-    to="/kinopoisk-widget"
+  <a
+    @click="$router.go(-1)"
     class="btn-back"
   >
     <img src="@/assets/images/free_icon_1.svg" alt="">
     Назад
-  </router-link>
+  </a>
 </template>
 
 <style scoped lang="sass">

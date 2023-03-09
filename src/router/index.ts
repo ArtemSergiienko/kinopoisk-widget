@@ -11,13 +11,13 @@ const routes: Array<RouteRecordRaw> = [
     path: "/kinopoisk-widget/poster/:id",
     name: "Poster",
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/Poster.vue"),
+      import(/* webpackChunkName: "poster" */ "@/views/Poster.vue"),
   },
   {
     path: "/kinopoisk-widget/actor/:id",
     name: "Actor",
     component: () =>
-        import(/* webpackChunkName: "about" */ "@/views/Actor.vue"),
+        import(/* webpackChunkName: "actor" */ "@/views/Actor.vue"),
   },
 ];
 
