@@ -1,72 +1,39 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { storeToRefs } from 'pinia';
 import Gallery from "@/components/Gallery.vue"
 import Preloader from "@/components/Preloader.vue"
 import BtnBack from "@/components/BtnBack.vue"
-import { usePoster } from "@/composables/usePoster";
-import { usePosterBudget } from "@/composables/usePosterBudget";
-import { useTrailerItem } from "@/composables/useTrailerItem";
-import { useImagesItem } from "@/composables/useImagesItem";
-import { useStaff } from "@/composables/useStaff";
-// import POSTER_BOX_STAFF from '@/fixtures/actor.json';
-// import POSTER_VIDEOS from '@/fixtures/videos.json';
-// import POSTER_BOX_OFFICE from '@/fixtures/office.json';
-// import POSTER_DATA from '@/fixtures/poster.json';
-import { PostersTypes, BudgetTypes, VideosTypes, ImagesTypes, StaffTypes } from '@/types';
+import { Store } from '@/stores/store';
 
 const isLoading = ref<boolean>(true);
-let id = ref<string | string[]>(useRoute().params.id);
-let posterData = ref<PostersTypes>();
-let posterBudget = ref<BudgetTypes[]>([]);
-let posterVideos = ref<VideosTypes[]>([]);
-let imagesList = ref<ImagesTypes[]>([]);
-let staffList = ref<StaffTypes[]>([]);
+const id = ref<string | string[]>(useRoute().params.id);
+const { usePosterStore, useBudgetStore, useVideosStore, useImagesStore, useStaffStore } = Store;
+const poster = usePosterStore();
+const budget = useBudgetStore();
+const videos = useVideosStore();
+const images = useImagesStore();
+const staff = useStaffStore();
+const { posterData } = storeToRefs(poster);
+const { posterBudget } = storeToRefs(budget);
+const { posterVideos } = storeToRefs(videos);
+const { imagesList } = storeToRefs(images);
+const { staffList } = storeToRefs(staff);
 
 onMounted(() => {
-  getPoster(id.value);
-  getBudget(id.value);
-  getVideos(id.value);
-  getImages(id.value);
-  getStaff(id.value);
+  Promise.all([
+    poster.getPoster(id.value),
+    budget.getBudget(id.value),
+    videos.getVideos(id.value),
+    images.getImages(id.value),
+    staff.getStaff(id.value),
+  ]).then(() => {
+    isLoading.value = false;
+  }).catch((error) => {
+    console.error(error)
+  })
 });
-
-const getPoster = async (id: string | string[]) => {
-  const { poster, loaded } = await usePoster(id);
-  isLoading.value = !loaded.value;
-  posterData.value = poster.value;
-  // posterData.value = [POSTER_DATA];
-}
-
-const getBudget = async (id: string | string[]) => {
-  const { budgets, loaded } = await usePosterBudget(id);
-  isLoading.value = !loaded.value;
-  const budget: any = Object
-    .values(budgets.value)
-    .find((item: any) => item.type === 'WORLD')
-  posterBudget.value = [budget]
-  // posterBudget.value = POSTER_BOX_OFFICE
-}
-
-const getVideos = async (id: string | string[]) => {
-  const { videosLinks, loaded } = await useTrailerItem(id);
-  posterVideos.value = videosLinks.value?.items;
-  isLoading.value = !loaded.value;
-  // posterVideos.value = POSTER_VIDEOS
-}
-
-const getImages = async (id: string | string[]) => {
-  const { images, loaded } = await useImagesItem(id);
-  isLoading.value = !loaded.value;
-  imagesList.value = images.value?.items;
-}
-
-const getStaff = async (id: string | string[]) => {
-  const { staff, loaded } = await useStaff(id);
-  isLoading.value = !loaded.value;
-  staffList.value = staff.value.filter((item: any) => item.professionKey === 'ACTOR').slice(0, 5);
-  // staffList.value = POSTER_BOX_STAFF.filter((item: any) => item.professionKey === 'ACTOR').slice(0, 5);
-}
 
 </script>
 

@@ -3,22 +3,20 @@ import { ref, onMounted, onUnmounted } from "vue"
 import throttle from 'lodash-es/throttle';
 import Preloader from "./Preloader.vue"
 import PosterItem from "./PosterItem.vue"
-// import POSTERS_DATA from '@/fixtures/posters.json';
-import { posters } from '@/stores/posters';
 import { storeToRefs } from 'pinia'
+import { Store } from '@/stores/store';
 
 const target = ref();
-const postersStore = posters();
-const { postersData, pagesCount, page, isLoading } = storeToRefs(postersStore);
-const { setPage, setLoading, getPosters } = postersStore;
+const { usePostersStore } = Store;
+const posters = usePostersStore();
+const { postersData, pagesCount, isLoading, page } = storeToRefs(posters);
+const { getPosters } = posters;
 
 const handleScroll = () => {
   const postList = target.value;
   if(page.value > pagesCount.value) return;
   if(isLoading.value) return;
   if(postList.offsetTop + postList.clientHeight < window.outerHeight + window.scrollY) {
-    setPage();
-    setLoading();
     getPosters();
   }
 }

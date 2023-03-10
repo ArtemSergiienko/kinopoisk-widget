@@ -1,12 +1,21 @@
-<template>
-  <Header />
-  <router-view />
-  <Footer />
-</template>
 <script setup lang="ts">
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+import { ref } from "vue";
+import router from "@/router";
+
+let layout = ref<string>('default');
+router.beforeEach((to) => {
+  if(to.meta.layout === 'welcome') {
+    layout.value = to.meta.layout;
+  }
+})
+
 </script>
+
+<template>
+  <component :is="layout">
+    <router-view />
+  </component>
+</template>
 
 <style lang="scss">
 #app {
@@ -15,3 +24,4 @@ import Footer from "./components/Footer.vue";
   grid-template-rows: auto 1fr auto;
 }
 </style>
+

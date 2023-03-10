@@ -5,33 +5,20 @@ import Preloader from "@/components/Preloader.vue"
 import BtnBack from "@/components/BtnBack.vue"
 import Fact from "@/components/Fact.vue"
 import Film from "@/components/Film.vue"
-import { useActor } from "@/composables/useActor";
-// import ACTOR_DATA from '@/fixtures/actor.json';
-import {ActorTypes, FilmType} from '@/types';
+import { storeToRefs } from "pinia";
+import { Store } from '@/stores/store';
 
-const isLoading = ref<boolean>(true);
-let actor = ref<ActorTypes>();
 let id = ref<string | string[]>(useRoute().params.id);
 let spliceFilms = ref<number>(15);
-let films = ref<FilmType[] | undefined>([]);
+const { useActorStore } = Store;
+const actorStore = useActorStore();
+const { actor, films, isLoading } = storeToRefs(actorStore);
+const { getActor } = actorStore;
+
 
 onMounted(() => {
   getActor(id.value);
 });
-
-const getActor = async (id: string | string[]) => {
-  const { actor: actorData, loaded } = await useActor(id);
-  actor.value = actorData.value;
-  isLoading.value = !loaded.value;
-  films.value = actor.value?.films.reduce((prevFilms: FilmType[], curFilms: FilmType) => {
-    if(!prevFilms.some(film => film.filmId === curFilms.filmId )) {
-      prevFilms.push(curFilms)
-    }
-    return prevFilms
-  }, []);
-  // isLoading.value = false;
-  // actor.value = ACTOR_DATA;
-}
 
 const handleLoadFilms = () => {
   spliceFilms.value = spliceFilms.value + 15;
