@@ -2,11 +2,9 @@
 import { ref } from "vue";
 import router from "@/router";
 
-let layout = ref<string>('default');
+let layout = ref<string | any>('default');
 router.beforeEach((to) => {
-  if(to.meta.layout === 'welcome') {
-    layout.value = to.meta.layout;
-  }
+  layout.value = to.meta.layout;
 })
 
 </script>

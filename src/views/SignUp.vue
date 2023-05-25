@@ -7,9 +7,9 @@ import FormReg from "@/components/FormReg.vue"
 <template>
   <div class="registration">
     <div class="registration__wrap">
-      <h1 class="registration__title">Регистрация</h1>
+      <h1 class="registration__title">Вход</h1>
       <FormReg
-        :type="''"
+        :type="'signUp'"
       />
     </div>
   </div>

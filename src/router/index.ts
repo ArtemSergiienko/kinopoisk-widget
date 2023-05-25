@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Home",
     component: Home,
     meta: {
-      layout: '',
+      layout: 'default',
       title: ''
     }
   },
@@ -23,6 +23,16 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "registration" */ "@/views/Registration.vue"),
     meta: {
       layout: 'welcome',
+      title: 'Регистрация',
+    }
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: () =>
+      import(/* webpackChunkName: "signup" */ "@/views/SignUp.vue"),
+    meta: {
+      layout: 'welcome',
       title: 'Вход',
     }
   },
@@ -32,7 +42,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "poster" */ "@/views/Poster.vue"),
     meta: {
-      layout: '',
+      layout: 'default',
       title: ''
     }
   },
@@ -42,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
         import(/* webpackChunkName: "actor" */ "@/views/Actor.vue"),
     meta: {
-      layout: '',
+      layout: 'default',
       title: ''
     }
   },
